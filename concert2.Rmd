@@ -1,0 +1,17 @@
+
+```{r}
+# Observation by observation
+concerts_obo <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17",
+                     simplifyDataFrame = F)
+
+# Feature by feature
+concerts_fbf <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17", simplifyDataFrame = T)
+
+```
+
+concerts_sampled <- concerts_obo[c(3,5)] 
+firstShowInfo <- concerts_obo[[2]][["showInfo"]][[1]][c("time","location")]
+
+
