@@ -1,0 +1,77 @@
+Exercise 3.1 How would you store the following lists:
+
+Shopping list: egg x 2 dozens, milk x 1L, vegetable x 2 kinds.
+Make a list of two courses your take this semester with course name, time, and place
+
+```{r}
+shoppinglist<-list("2eggs","milk","2vegetables")
+shoppinglist[1]
+````
+
+
+
+```{r}
+course<-list(list(name="principle of economic",time="WEDS3-4",place="social sicence depatment"),list(name="accounting",time="TUES5-7",place="business depatment"))
+course[2]
+```
+Exercise 3.2 From concerts_obo,
+
+Retrieve the 3rd and 5th concert observations and bind the result value with an object name concerts_sampled.
+
+```{r}
+concerts_sampled<-concerts_obo[c(3,5)]
+concerts_sampled
+```
+
+
+For the second concert, what are its first show’s time and location? Retrieve the information and bind the value with firstShowInfo.
+```{r}
+firstShowInfo<-concerts_obo[[2]][["showInfo"]][[1]][c("time","location")]
+firstShowInfo
+```
+
+
+
+
+Exercise 3.3 From concerts_obo, due to Covid-19 the 3rd concert’s 1st show time is changed to “2022/01/31 19:30:00” and the location is changed to “Taichung Opera House”, please change the information
+
+
+```{r}
+concerts_obocopy<-concerts_obo
+concerts_obocopy[[3]]$showInfo[[1]]$time="2022/01/31 19:30:00"
+concerts_obocopy[[3]]$showInfo[[1]]$location="Taichung Opera House"
+concerts_obocopy
+```
+Exercise 3.4
+How do you add the new born if you use JohnsFamilyCopy3$children[3] <-
+
+
+
+```{r}
+JohnsFamilyCopy3 <- JohnsFamily
+JohnsFamilyCopy3$children[[3]] <-list(name="Lisa",age=0)
+JohnsFamilyCopy3
+
+```
+Exercise 3.5The 5th concert decides to add one more show which shares the same show information as its first show except the date is 2 days later.
+```{r}
+concerts_obo[[5]]$showInfo[[2]] <- list()
+concerts_obo[[5]]$showInfo[[2]] <- concerts_obo[[5]]$showInfo[[1]]
+concerts_obo[[5]]$showInfo[[2]][c(1, 8)] <- list(time="2021/12/20 10:00:00", endTime="2021/12/21 22:00:00")
+```
+
+
+Exercise 3.6 Due to Covid-19 concerts 2, 5, 7 are cancelled. Remove those three concerts from concerts_obo.
+```{r}
+concerts_obo[-c(2,5,7)]
+```
+If John divorced Mary, how do you change the record by removing the spouse element?
+```{r}
+JohnsFamilyCopy4 <- JohnsFamily
+JohnsFamilyCopy4 [-c(3)]
+```
+
+
+
+
+
