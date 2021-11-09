@@ -1,0 +1,66 @@
+
+```{r}
+list("John",42, list("Mary", 35))[[3]][[2]]
+```
+```{r}
+bigList <- list("John",42, list("Mary", 35))
+
+```
+```{r}
+friends<-c("Amy","Mack","Andy",peson4="Tom")
+friends[[5]]<-"Cindy"
+friends[[2]]<-"Mark"
+"Amy"
+
+```
+```{r}
+list(c("a", "b"), c("c", "d")) [[2]][[1]]
+```
+```{r}
+  c(54, 32, 28, 20) # age
+  c("man"="male", "female", "female", "male")
+  c[["male"]]
+```
+
+```{r}
+
+list("John"=177, "Mary"=160, "Bill"=170)
+"Jhon"
+
+```
+
+
+
+
+```{r}
+# Observation by observation
+concerts_obo <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17", simplifyDataFrame = F)
+
+# Feature by feature
+concerts_fbf <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17", simplifyDataFrame = T)
+
+```
+
+```{r}
+concerts_sampled<-concerts_obo[c(3,5)]
+
+```
+```{r}
+firstShowInfo<-concerts_obo[[2]][["showInfo"]][[1]][c("time","location")]
+```
+
+```{r}
+friend <- list("Amy","Tom","Cindy")
+friend <- friend2
+friend2[[1]]<- "Mickey" 
+friend2[[1]]
+```
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+
+JohnsFamilyCopy[[1]] <- "Watson" 
+JohnsFamilyCopy[[1]]
+```
+
