@@ -1,0 +1,103 @@
+---
+title: "week9"
+output: html_notebook
+---
+```{r}
+typeof(c("John", "Mary"))
+typeof(c(2, 3.1412))
+typeof(c(TRUE, TRUE, F))
+```
+
+```{r}
+class(c("John", "Mary"))
+class(c(2, 3.1412))
+class(c(TRUE, TRUE, F))
+```
+```{r}
+datetimeinfro<- "2021-01-01 12:03:33" #character value
+datetimeinfro
+ "2021-01-01 12:03:33" + "20 seconds" 
+```
+
+
+```{r}
+install.packages("lubridate")
+```
+```{r}
+class("2021-01-01 12:03:33")
+class(lubridate::ymd_hms("2021-01-01 12:03:33"))
+```
+
+```{r}
+datetimeinfro2<-lubridate::ymd_hms("2021-01-01 12:03:33")
+```
+
+```{r}
+datetimeinfro2+lubridate::minutes(20)
+```
+```{r}
+commonClasses <- list()
+# save three different atomic vectors
+commonClasses$character <- c("John", "Mary", "Bill")
+commonClasses$numeric <- c(2.3, 4, 7)
+commonClasses$logical <- c(TRUE, T, F, FALSE)
+```
+
+```{r}
+bloodTypes <- c("AB", "AB", "A", "B", "A", "A", "B", "O", "O", "AB")
+```
+
+```{r}
+bloodTypes_fct <- 
+  factor(bloodTypes)
+bloodTypes_fct
+table(bloodTypes_fct)
+levels(bloodTypes_fct)
+```
+
+
+```{r}
+bloodTypes_fct_levelsSetup <- 
+  factor(bloodTypes, levels=c("A", "B", "O", "AB"))
+table(bloodTypes_fct_levelsSetup)
+```
+```{r}
+household_income <- c("low income", "low income", "middle income", "low income", "high income", "middle income", "high income", "high income", "middle income", "middle income")
+household_income_fct <- 
+  factor(household_income)
+levels(household_income_fct)
+```
+```{r}
+household_income_levelsetup<-
+  factor(household_income,level=c("low income", "middle income","high income"))
+table(household_income_levelsetup)
+```
+```{r}
+household_income_levelsSetup_ordered<-
+  factor(household_income,level=c("low income", "middle income","high income"),ordered=T)
+```
+
+```{r}
+class(household_income_levelsSetup_ordered)
+```
+```{r}
+household_income_levelsSetup_ordered[[1]]>"middle income"
+household_income_levelsSetup_ordered[[2]]<"high income"
+```
+
+
+```{r}
+customerExperience <- c('very happy','very happy','satisfied','satisfied','satisfied','very happy','bad','bad','satisfied','satisfied','bad','happy','happy','very happy','happy','happy','satisfied','very happy','very happy','satisfied','satisfied','very happy','satisfied','bad','very happy','very bad','very happy','bad','bad','very bad')
+table(customerExperience)
+levels(customerExperience)
+```
+
+```{r}
+customerExperience_orderedsetup<-
+  factor(customerExperience,
+         levels=c('verybad','bad','satisfied','happy','very happy')
+         ,ordered=T)
+```
+
+```{r}
+customerExperience_orderedsetup[[3]]>'bad'
