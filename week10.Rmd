@@ -1,0 +1,114 @@
+
+```{r}
+dayinfro<-list()
+dayinfro$ymd<-c("30/10/2021", "30-10-2021", "30 October, 2021", "30 Oct., 2021")
+class(dayinfro$ymd)
+lubridate::as_date(dayinfro$ymd)->
+  dayinfro$ymd_parsed
+class(dayinfro$ymd_parsed)
+```
+```{r}
+dateTime_taipei <- 
+  lubridate::ymd_hms(
+    c("2021/10/30 13:22:52", "2021-10-31 1:22:52PM"),
+    tz = "Asia/Taipei")
+dateTime_taipei
+```
+```{r}
+dateTime_london <- 
+  lubridate::mdy_hm(
+    c("October 30, 2021, 23:10", "Oct. 30, 2021 `
+```{r}
+c(dateTime_taipei,dateTime_london)
+```
+```{r}
+dateTime_london_atTaipei <-
+  lubridate::with_tz(
+    dateTime_london,#must be a date time class
+    tz="Asia/Taipei"
+  )
+dateTime_london
+dateTime_london_atTaipei
+```
+
+```{r}
+datetime_boston<-
+  lubridate::mdy_hm(
+    c("10/13/2020 15:00", "4/10/2019 09:30"),
+    tz="America/Bogota"
+  )
+datetime_mykonos<-
+lubridate::mdy_hm(
+  c("1/14/2021 03:27", "8/8/2020 11:20"),
+  tz="Europe/Mariehamn")
+
+dateTime_boston_atDeli <-
+  lubridate::with_tz(
+    datetime_boston,
+    tz="Asia/Calcutta")
+dateTime_mykonos_atDeli <-
+  lubridate::with_tz(datetime_mykonos,tz="Asia/Calcutta")
+
+```
+
+
+
+
+
+
+
+
+```{r}
+survey_df_1step <-
+  data.frame(
+    list(
+    age=c(54, 32, 28, 20), # age
+    gender=c("male", "female", "female", "male"), # gender
+    residence=c("north", "south", "east", "east"), # residence
+    income=c(100, 25, NA, 77) # income
+ ) )
+class(survey_df_1step)
+```
+
+
+```{r}
+```
+
+
+```{r}
+survey_fbf2 <-
+  list(
+    age=list(54, 32, 28, 20), 
+    gender=list("male", "female", "female", "male"), 
+    residence=list("north", "south", "east", "east"), 
+    income=list(100, 25, NA, 77))
+````
+
+
+```{r}
+commonclass<-list()
+commonclass$data_frame<-data_frame<-survey_df_1step
+```
+
+```{r}
+data.frame(survey_df_1step)
+```
+```{r}
+dfExercise <- list()
+
+dataSet1 <- list(
+  name=c("John", "Mary", "Ben"),
+  age=c(33, 45, NA)
+)
+data.frame(dataSet1)
+dataSet1<-dfExercise$data1.
+```
+
+```{r}
+dataSet1$children[[1]][[1]] <-c(name="Jane",age=2)
+dataSet1$children[[2]][[1]] <-c(name="Bill",age=3) 
+dataSet1$children[[2]][[2]] <-c(name="Ken",age=0)
+dataSet1$children[[3]][[1]] <-c(name="William",age=10)
+
+```
+
