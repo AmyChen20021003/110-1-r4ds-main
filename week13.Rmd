@@ -1,0 +1,128 @@
+```{r}
+set.seed(2020)
+A<-sample(50:80,10,replace=T)#從50~80抽10個，可重複
+pick <- A > 60 # is asking 
+whichMetTheCondition <- which(pick)
+```
+```{r}
+A[pick]
+A[whichMetTheCondition]
+```
+
+
+```{r}
+grades <- c(51,70,79,78,67,74,80)#mean student grades
+pick <- grades > 70 # or
+whichIs70plus <- which(pick)
+grade[pick]
+```
+...[pick]: For those whose grades > 70,
+
+gender[...]: their gender is.
+
+
+```{r}
+grades <- c(51,70,79,78,67,74,80)
+# same 7 student's gender
+gender <- c('female','female','male','male','female','male','male')
+```
+```{r}
+pick <- grades > 70
+gender[pick]
+#retrieve from gender 
+#[pick]  for those whose grades>70
+```
+```{r}
+dataSet1 <- 
+  data.frame(
+    school_id = c("001", "002", "003", "004"),
+    course1_grade=c(55, 83, 92, 73),
+    course2_grade=c(50, 88, 72, 77)
+  )
+```
+```{r}
+pick<-dataSet1$course1_grade>=80
+dataSet1$course2_grade[pick] #conditional retrievel
+```
+
+
+```{r}
+names(dataSet1)
+```
+[.row,.col]
+```{r}
+dataSet1[pick, ] ->subsample
+
+subset(dataSet1, course1_grade >=80)
+```
+
+```{r}
+pick <- c(F, T, NA, T)
+
+c(1, 2, 3, 4)[pick]
+```
+```{r}
+gender = c('Female','Male','Male', 'Female')
+age = c(28,41,42,33)
+residence = c('South','South','North', 'North')
+color=c("yellow", "pink", "blue", "green")
+```
+
+```{r}
+pick<- gender=="Male"
+```
+For those who are male and lives in the south
+
+```{r}
+#1
+pick_male<- gender=="male"
+#2
+pick_south<- residence=="south"
+```
+
+```{r}
+#1 AND 2
+# For those who are "Male": 
+pick$male <- gender == "Male"
+print(pick$male)
+
+# For those who lives in the "South:
+pick$south <- residence == "South"
+print(pick$south)
+pick$male_south <- pick$male&pick$south
+# what are their ages?
+age[pick$male_south]
+```
+
+
+```{r}
+pick_male_south<- pick$male|pick$south
+age[pick_male_south]
+
+```
+```{r}
+pick$maleXOsouth <-
+  xor(pick$male, pick$south)
+
+print(pick$maleXOsouth)
+```
+```{r}
+color[pick$male]
+```
+```{r}
+any(pick$male)
+all(pick$male)
+```
+
+```{r}
+pick2 <- c(T, T, NA)
+any(pick2)
+all(pick2)
+```
+
+```{r}
+pick3<-c(F,F,NA)
+any(pick3)
+all(pick3)#all have to be TRUE
+```
+
