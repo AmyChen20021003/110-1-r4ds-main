@@ -1,0 +1,25 @@
+```{r}
+fraud <- list()
+fraud$source[[1]] <- "https://data.gov.tw/dataset/78432"
+fraud$source[[2]] <- "https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=7F6BE616-8CE6-449E-8620-5F627C22AA0D"
+fraud$data <- readr::read_csv(fraud$source[[2]])
+```
+```{r}
+#1
+conversion<-lubridate::ymd(fraud[["data"]][["通報日期"]])
+is.na(conversion)
+```
+```{r}
+#2
+pick6<-conversion>=lubridate::ymd(20190101)
+ans<-fraud[["data"]][["帳號"]][pick6]
+length(na.omit(ans))
+```
+
+```{r}
+#3
+pick9<-lubridate::ymd(20190101)<=conversion
+pick10<-conversion<lubridate::ymd(20200101)
+sum(pick9 & pick10,na.rm = T)
+```
+
