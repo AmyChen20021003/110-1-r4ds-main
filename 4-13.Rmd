@@ -22,7 +22,7 @@ table(reason)
 ```
 ```{r}
 #3
-pick3<-johnDoe[["data"]][["死亡方式描述"]]==c("不詳","他殺")
+pick3<-johnDoe[["data"]][["死亡方式描述"]]%in%c("不詳","他殺")
 country<-johnDoe[["data"]][["發現縣市"]][pick3]
 table(country)
 
