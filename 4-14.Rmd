@@ -7,7 +7,7 @@ fraud$data <- readr::read_csv(fraud$source[[2]])
 ```{r}
 #1
 conversion<-lubridate::ymd(fraud[["data"]][["通報日期"]])
-is.na(conversion)
+any(is.na(conversion))
 ```
 ```{r}
 #2
@@ -19,7 +19,7 @@ length(na.omit(ans))
 ```{r}
 #3
 pick9<-lubridate::ymd(20190101)<=conversion
-pick10<-conversion<lubridate::ymd(20200101)
+pick10<-conversion<lubridate::ymd(20201231)
 sum(pick9 & pick10,na.rm = T)
 ```
 
