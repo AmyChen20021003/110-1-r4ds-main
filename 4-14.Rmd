@@ -19,7 +19,7 @@ length(na.omit(ans))
 ```{r}
 #3
 pick9<-lubridate::ymd(20190101)<=conversion
-pick10<-conversion<lubridate::ymd(20201231)
+pick10<-conversion<=lubridate::ymd(20201231)
 sum(pick9 & pick10,na.rm = T)
 ```
 
