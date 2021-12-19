@@ -1,0 +1,204 @@
+```{r}
+#multiple hobbies
+hobby = c(
+  'sport, reading, movie',
+  'sport',
+  'movie, sport, reading',
+  'movie, Reading',
+  'sport') 
+
+```
+
+```{r}
+'sport, reading, movie'=='reading, sport, movie'
+'sport, reading, movie'=='sport, reading, movie'#sequence
+hobby=="reading"
+hobby%in%"reading"
+hobby%in%'sport, reading, movie'
+```
+```{r}
+stringr::str_detect(
+  'reading, sport, movie',
+  'reading'
+)
+```
+
+```{r}
+# any one likes to read
+stringr::str_detect(hobby, "reading") # 4th is FALSE
+stringr::str_detect(hobby, 
+                    coll("reading", ignore_case = T)) # 4th is TRUE
+```
+```{r}
+stringr::str_split(
+  string,
+  pattern=","
+)
+```
+
+```{r}
+# Count for each hobby
+table(hobby)
+
+unlisted_hobbies <- {
+  hobby |> 
+    stringr::str_split(", ") -> list_hobbies
+  
+  unlist(list_hobbies)
+}
+table(unlisted_hobbies)
+```
+```{r}
+love1<-{love2<-stringr::str_split(
+  hobby,
+  pattern=","
+)
+table(unlist(love2))
+}
+love2
+love1
+
+```
+```{r}
+toupper(hobby)|>table()
+tolower(hobby)|>table()
+```
+```{r}
+df_dates =
+  data.frame(
+    year = c('2001','2001','2002','2001','2001'),
+    month = c('4','10','1','1','4'),
+    day = c('3','3','22','18','3')
+  )
+```
+```{r}
+chr_dates <- paste(df_dates$year, df_dates$month, df_dates$day,sep="-")
+chr_dates 
+dates <- lubridate::ymd(chr_dates)
+dates
+```
+```{r}
+students <-
+  data.frame(
+    major = c('economics','sociology','economics','sociology','sociology','finance','sociology','statistics','statistics','sociology'),
+    year= c(4,1,4,3,1,4,4,2,1,3),
+    credits= c(16,13,10,21,17,12,21,15,20,17)
+  )
+```
+school(學院)
+```{r}
+school = character(10)
+
+{
+  # For those whose major is economics or sociology, their school is social science. 
+  pick_those = students$major %in% 
+    c("economics", "sociology")
+  school[pick_those] = "social science"
+  
+  # For those whose major is statistics or finance, their school is business
+  pick_those = students$major %in% 
+    c("statistics", "finance")
+  school[pick_those] = "business"
+}
+
+school
+```
+```{r}
+school = factor(students$major)
+
+{
+  levels(school) <- 
+    c("social science","business","social science","business") #RHS and LHS are same length
+  
+  school
+}
+
+school
+```
+```{r}
+students$year<-factor(students$year)
+students$year
+levels(students$year)<-c(
+  "freshman","sophemore",
+  "junior","senior"
+)
+students$year
+```
+
+```{r}
+students$credits
+```
+credits: <= 12 (light), 13-20 (normal), 20+ (heavy)
+```{r}
+workload<-character(10)
+
+workload[c(3,6)]<-"light"
+workload[c(1,2,5,8,9)]<-"normal"
+workload[c(4,7,10)]<-"heavy"
+workload
+```
+```{r}
+workload<-character(10)
+pick_those= students$major <=12
+workload[pick_those]="light"
+
+pick_those2=(students$major>=13)|(students$major<=20)
+workload[pick_those2]="normal"
+
+pick_those3= students$major >20
+workload[pick_those3]="heavy"
+workload
+```
+
+```{r}
+workload<-factor(students$credits)
+levels(workload)
+```
+```{r}
+## step 1. create cut points vector (each point is maximal value of a group)
+maximalValues <- c(0, 12, 20, 30) # throw in a lowest value (0)
+## step 2: cut students$credits with maximalValues cut points
+cut(
+  students$credits,#numerical vector
+  maximalValues #cut points
+  ) -> students$load
+## step 3(optional): using regroup skill to rename levels
+levels(students$load) <- c("light", "normal", "heavy")
+students$load
+```
+
+```{r}
+
+dates <- 
+  c('2016-11-15','NA','NA','1997-05-07','1995-08-25','2002-09-20','NA','NA','NA','1995-07-16', '2011-06-22')
+grades <- c(29,53,26,27,55,69,NA,NA,63,NA,56)
+genders <- c('Male','Female','Male','Male','Female','Female',NA,'Male','Male','Female','Female')
+majors <- c('economics','economics',NA,'economics','economics','economics','economics','statistics','law','economics','law')
+)
+```
+ 
+```{r}
+dates |> class()
+dates |> lubridate::ymd() -> dates
+dates |> class()
+```
+```{r}
+analysis <- list()
+anyNA(dates)
+dates |> is.na() |> sum() -> analysis$dates$na$sum
+anyNA(grades)
+grades |> is.na() |> sum() -> analysis$grades$na$sum
+```
+
+
+
+```{r}
+dates |> range()
+dates |> range(na.rm=T) -> analysis$dates$range
+
+grades |> range(na.rm=T) -> analysis$grades$range
+grades |> median(na.rm=T) -> analysis$grades$mdian
+
+grades |> mean(na.rm=T) -> analysis$grades$mean
+```
+
