@@ -1,0 +1,39 @@
+```{r}
+johnDoe <- list()
+johnDoe$source[[1]] <- "https://www.moj.gov.tw/2204/2771/2773/76135/post"
+johnDoe$source[[2]] <- "https://docs.google.com/spreadsheets/d/1g2AMop133lCAsmdPhsH3lA-tjiY5fkGIqXqwdknwEVk/edit?usp=sharing"
+googlesheets4::read_sheet(
+  johnDoe$source[[2]]
+) -> johnDoe$data
+```
+#1
+```{r}
+df_dates <-
+  paste(
+    johnDoe[["data"]][["發現年"]]+1911,
+    johnDoe[["data"]][["發現月"]],
+    johnDoe[["data"]][["發現日"]]
+  )
+```
+
+```{r}
+parsing_dates<-lubridate::ymd(df_dates)
+johnDoe[["data"]]$發現日期<-parsing_dates
+class(johnDoe[["data"]]$發現日期)
+```
+
+#2
+```{r}
+find_na<-is.na(johnDoe[["data"]][["發現日"]])
+length(which(find_na))
+```
+
+
+#3
+```{r}
+month<-table(johnDoe[["data"]][["發現月"]])
+pickmax<-which.max(month)
+month[pickmax]
+```
+
+
