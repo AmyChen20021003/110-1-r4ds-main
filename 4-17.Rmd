@@ -1,0 +1,32 @@
+
+#1
+```{r}
+johnDoe[["data"]]$發現季節<-johnDoe[["data"]][["發現月"]]
+```
+```{r}
+pick_spring<-johnDoe[["data"]][["發現月"]] %in% c(3,4,5)
+
+johnDoe[["data"]]$發現季節[pick_spring]<-"spring"
+
+
+pick_summer<-johnDoe[["data"]][["發現月"]] %in% c(6,7,8)
+johnDoe[["data"]]$發現季節[pick_summer]<-"summer"
+
+
+pick_fall<-johnDoe[["data"]][["發現月"]] %in% c(9,10,11)
+johnDoe[["data"]]$發現季節[pick_fall]<-"fall"
+
+
+
+pick_winter<-johnDoe[["data"]][["發現月"]] %in% c(12,1,2)
+johnDoe[["data"]]$發現季節[pick_winter]<-"winter"
+
+```
+#2
+```{r}
+table(johnDoe[["data"]]$發現季節)
+```
+
+
+
+
