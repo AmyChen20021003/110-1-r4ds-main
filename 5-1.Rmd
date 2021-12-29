@@ -1,0 +1,61 @@
+```{r}
+# Observation by observation
+concerts_obo <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17", simplifyDataFrame = F)
+```
+
+#1
+```{r}
+length(concerts_obo[[5]][["showInfo"]])
+```
+#2
+```{r}
+analysis2 <- list()
+for(.x in seq_along(concerts_obo)){
+  # .x-pattern
+  analysis2$number_of_performance[[.x]] <-length(concerts_obo[[.x]][["showInfo"]])
+}
+```
+
+
+#3
+```{r}
+analysis <- list()
+analysis$number_of_shows<- vector("list", length(concerts_obo))
+for(.x in seq_along(concerts_obo)){
+  # .x-pattern
+  analysis$number_of_shows[[.x]] <-length(concerts_obo[[.x]][["showInfo"]])
+}
+```
+
+#4
+```{r}
+concerts_obo_df<-list()
+concerts_obo_df$title<-vector("list", length(concerts_obo))
+ for(.x in seq_along(concerts_obo)){
+   concerts_obo_df$title[[.x]]<-concerts_obo[[.x]][["title"]]
+ }
+```
+
+```{r}
+time_parsed<-lubridate::ymd_hms(concerts_obo[[.x]][["showInfo"]][[1]][["time"]])
+
+concerts_obo_df$date<-vector("list", length(concerts_obo))
+  for(.x in seq_along(concerts_obo)){
+concerts_obo_df$date[[.x]]<-time_parsed
+}
+```
+
+```{r}
+concerts_obo_df$location<-vector("list", length(concerts_obo))
+for(.x in seq_along(concerts_obo)){
+concerts_obo_df$location[[.x]]<-concerts_obo[[.x]][["showInfo"]][[1]][["location"]]
+}
+```
+```{r}
+concerts_obo_df$locationName<-vector("list", length(concerts_obo))
+for(.x in seq_along(concerts_obo)){
+  concerts_obo_df$locationName[[.x]]<-concerts_obo[[.x]][["showInfo"]][[1]][["locationName"]]
+}
+```
+
