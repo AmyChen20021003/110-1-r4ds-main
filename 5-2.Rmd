@@ -1,0 +1,37 @@
+```{r}
+drug <- list()
+drug$source[[1]] <- 
+  "https://docs.google.com/spreadsheets/d/17ID43N3zeXqCvbUrc_MbpgE6dH7BjLm8BHv8DUcpZZ4/edit?usp=sharing"
+drug$data <- 
+  googlesheets4::read_sheet(
+    drug$source[[1]]
+  )
+```
+
+
+```{r}
+drug1<-drug$data[-1,]
+drug_kind<-split(drug1,drug[["data"]][["kind"]])
+drug_meanweight<-vector("double",length(drug_kind))
+for(.x in seq_along(drug_kind)){
+ drug_meanweight[[.x]]<-mean(as.numeric(drug_kind[[.x]][["weight_g"]]))
+}
+```
+#2
+```{r}
+date.data<-drug[["data"]][["oc_dt"]][c(2:14825)]
+parsing_date<-as.numeric(date.data)+19110000
+lubridate::ymd(parsing_date)
+drug[["data"]]$date<-lubridate::ymd(parsing_date)
+```
+#3
+```{r}
+pick_drug<-drug[["data"]][["kind"]]%in%"安非他命"
+group_drug<-split(drug$data,pick_drug)
+parse_year<-lubridate::year(group_drug[["TRUE"]]$date)
+group_drug_year<-split(group_drug[["TRUE"]],parse_year)
+drug_weights=list()
+for (.x in 1:length(group_drug_year)) {
+  drug_weights[[.x]] = mean(as.double(group_drug_year[[.x]][["weight_g"]]))
+}
+names(drug_weights) = levels(as.factor(parse_year))
